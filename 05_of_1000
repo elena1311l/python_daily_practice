@@ -1,0 +1,53 @@
+expenses = [
+    {"category": "Food", "amount": 250, "shop": "Silpo"},
+    {"category": "Transport", "amount": 50, "shop": "Uber"},
+    {"category": "Food", "amount": 100, "shop": "ATB"},
+    {"category": "Entertainment", "amount": 500, "shop": "Cinema"},
+    {"category": "Food", "amount": 150, "shop": "Silpo"},
+    {"category": "Transport", "amount": 80, "shop": "Bolt"}
+]
+def analyze_expenses(expenses):
+    report={}
+    for i in expenses:
+        if i["category"] not in report:
+            report[i["category"]]=[i["shop"]]
+        else:
+            if i["shop"] not in report[i["category"]]:
+                report[i["category"]].append(i["shop"])
+    return report
+print(analyze_expenses(expenses))
+
+
+enrollments = [
+    {"course": "Python", "student": "Olena"},
+    {"course": "SQL", "student": "Ivan"},
+    {"course": "Python", "student": "Andrii"},
+    {"course": "Python", "student": "Olena"},  # Повтор!
+    {"course": "SQL", "student": "Olena"},
+    {"course": "Git", "student": "Ivan"}
+]
+def get_course_students(enrollments):
+    courses_name={}
+    for i in enrollments:
+        if i["course"] not in courses_name:
+            courses_name[i["course"]]=[i["student"]]
+        else:
+            if i["student"] not in courses_name[i["course"]]:
+                courses_name[i["course"]].append(i["student"])
+    return courses_name
+print(get_course_students(enrollments))
+
+
+data = {
+    "Python": ["Olena", "Andrii"],
+    "SQL": ["Ivan", "Olena"],
+    "Git": ["Ivan"]
+}
+def find_student_courses(data, student_name):
+    my_courses = []
+    for course, students in data.items():
+        if student_name in students:
+            my_courses.append(course)
+    return my_courses
+print (find_student_courses(data, "Ivan"))
+print (find_student_courses(data, "Olena"))

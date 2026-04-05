@@ -1,0 +1,30 @@
+orders = [
+    {"item": "apple", "price": 10},
+    {"item": "banana", "price": 5},
+    {"item": "apple", "price": 12},
+    {"item": "banana", "price": 5},
+    {"item": "banana", "price": 7},
+    {"item": "kiwi", "price": 5}
+
+]
+def summarize_orders(orders):
+    result = {}
+    for i in orders:
+        if i["item"] in result:
+            result[i["item"]]=result[i["item"]]+i["price"]
+        else:
+            result[i["item"]]=i["price"]
+    return result
+print (summarize_orders(orders))
+
+
+prices = ["100", "200", "error", "300", "not_a_number", "50"]
+def calculate_total(prices):
+    new_prices=0
+    for i in prices:
+        try:
+            new_prices+=int(i)
+        except ValueError:
+            print('Some number is not number')       
+    return new_prices
+print (calculate_total(prices))

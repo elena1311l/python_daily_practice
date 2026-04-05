@@ -1,0 +1,16 @@
+import linecache
+def file_reader(f_name):
+    with open(f_name, 'r+') as file:
+        for line in file:
+            str1 = line.strip()
+            arr = str1.split()
+            count = str(len(arr ))
+            file_writer('output.txt', count)
+            print(len(arr)) 
+
+def file_writer(f_name, text):
+    with open(f_name, 'a') as file:
+        file.write(text+'\n')
+  
+
+print(file_reader('input.txt'))

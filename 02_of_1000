@@ -1,0 +1,16 @@
+def users_param(raw_users):
+    users=[]
+    n_users=[]
+    for i in raw_users:
+        if i["status"]=="active":
+            users.append(i)
+            
+    for j in users:
+        n_users.append(j["name"].strip().capitalize())
+    return n_users
+print (users_param([
+    {"name": "  olena ", "status": "active"},
+    {"name": "Ivan", "status": "banned"},
+    {"name": "  AnDrii  ", "status": "active"},
+    {"name": "Oleg", "status": "active"}
+]))

@@ -1,0 +1,14 @@
+import string
+def is_pangram(test):
+    string.ascii_lowercase
+    new_set=set()
+    for i in test:
+        if i in string.ascii_lowercase:
+            new_set=new_set.union(i)
+    if len(new_set)==26:
+        return True
+    else:
+        return False
+
+total = input("Enter the string: ")
+print(is_pangram(total))   

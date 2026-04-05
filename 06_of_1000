@@ -1,0 +1,20 @@
+stock = [
+    {"item": "Milk", "quantity": 10, "status": "fresh"},
+    {"item": "Bread", "quantity": 5, "status": "expired"},
+    {"item": "Milk", "quantity": 20, "status": "fresh"},
+    {"item": "Cheese", "quantity": 8, "status": "fresh"},
+    {"item": "Bread", "quantity": 2, "status": "fresh"}
+]
+def clean_stock(stock):
+    result = {}
+    result0 = {}
+    for i in stock:
+        if i["status"]=="fresh" and i["item"] not in result:
+            result[i["item"]]=[i["quantity"]]
+        elif i["status"]=="fresh" and i["item"] in result:
+            result[i["item"]].append(i["quantity"])
+    for key, value in result.items():
+        result0[key]=sum(value)
+    return result0
+
+print(clean_stock(stock))
