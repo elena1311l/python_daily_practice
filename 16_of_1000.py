@@ -26,5 +26,9 @@ def choice_random():
                 inventory.append(goods)
                 print(f'New inventory {inventory}')
     return(hero, inventory)
+
+def buy_item(gold_amount, item_price, item_name)
+
+
 print(choice_random())
 
