@@ -28,3 +28,4 @@ def get_perfect_candidates(analyzed_list):
     return shortlist
 print('result result result')
 print(get_perfect_candidates(result))
+

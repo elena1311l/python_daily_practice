@@ -1,0 +1,158 @@
+candidates = [
+    {"name": "Ivan", "skills": ["python", "sql"]},
+    {"name": "Petro", "skills": ["python", "git"]},
+    {"name": "Olga", "skills": ["hr", "sql"]}
+]
+def get_unique_skills(candidate_list):
+    unique_skills = []
+    for item in candidate_list:
+        for skil in item["skills"]:
+            if skil not in unique_skills:
+                unique_skills.append(skil)
+    return unique_skills
+print(get_unique_skills(candidates))
+
+def count_skills_frequency(candidate_list):
+    skill_counts = {}
+    for item in candidate_list:
+        for skil in item["skills"]:
+            if skil not in skill_counts:
+                skill_counts[skil]=1
+            else:
+                skill_counts[skil]+=1
+    return skill_counts
+print(count_skills_frequency(candidates))
+
+candidates = [
+    {"name": "Ivan", "city": "Kyiv"},
+    {"name": "Olga", "city": "Lviv"},
+    {"name": "Petro", "city": "Kyiv"},
+    {"name": "Anna", "city": "Odesa"},
+    {"name": "Dmitro", "city": "Lviv"}
+]
+def group_by_city(candidate_list):
+    city_groups = {}
+    for item in candidate_list:
+        if item["city"] not in city_groups:
+            city_groups[item["city"]]=[item["name"]]
+        else:
+            city_groups[item["city"]].append(item["name"])
+    return city_groups
+print (group_by_city(candidates))
+
+cand = [
+    {
+        "name": "Ivan", 
+        "skills_scores": {"python": 8, "sql": 9, "excel": 6}
+    },
+    {
+        "name": "Olga", 
+        "skills_scores": {"hr": 10, "recruitment": 8}
+    }
+]
+def find_top_skills(candidate_list):
+    skills_scores={}
+    for item in candidate_list:
+        best_skill = []
+        max_score = 0
+        for skill, score in item["skills_scores"].items():
+            if score>max_score:
+                max_score=score
+                best_skill=skill
+        skills_scores[item["name"]]=f"{best_skill}({max_score})"
+    return skills_scores
+
+print('skills score----skills score')
+print(find_top_skills(cand))
+
+candid = [
+    {"name": "Ivan", "status": "pending"},
+    {"name": "Olga", "status": "pending"},
+    {"name": "Petro", "status": "pending"}
+]
+def update_candidate_status(candidate_list, target_name, new_status):
+    for item in candidate_list:
+        if item["name"]==target_name:
+            item["status"]=new_status
+    return candidate_list
+
+print (update_candidate_status(candid, "Olga", "hier"))
+
+contacts = [
+    {"name": "Ivan", "phone": "067 123 45 67"},
+    {"name": "Olga", "phone": "+38(050)111-22-33"},
+    {"name": "Petro", "phone": "0931234567"},
+    {"name": "Anna", "phone": "12345"} 
+]
+def clean_contacts(contact_list):
+    for item in contact_list:
+        item["phone"] = item["phone"].replace(" ","").replace("(", "").replace(")", "").replace("+", "").replace("-", "")
+        if len(item["phone"]) not in (10,12):
+            item["phone"]="invalid"
+
+    return contact_list
+
+print('new new new new')
+print ('- - - - - - - -')
+print (clean_contacts(contacts))
+
+new_employees = [
+    {"first_name": "Ivan", "last_name": "Sirko"},
+    {"first_name": "Olga", "last_name": "Kozak"},
+    {"first_name": "Petro", "last_name": "Nesterov"}
+]
+def generate_emails(employees):
+    for item in employees:
+        name=item["first_name"].lower()
+        lname=item["last_name"].lower()
+        item["email"]=f'{name}.{lname}@company.com'
+    return employees
+print('emai    email   email   email   email')
+print(generate_emails(new_employees))
+
+staff = [
+    {"name": "Ivan", "dept": "IT", "salary": 2000, "years": 3},
+    {"name": "Olga", "dept": "HR", "salary": 1500, "years": 1},
+    {"name": "Olena", "dept": "IT", "salary": 2500, "years": 6},
+    {"name": "Anna", "dept": "Sales", "salary": 1800, "years": 2}
+]
+def calculate_bonuses(staff_list):
+    max_sal=0
+    for item in staff_list:
+        if item["dept"]=="IT":
+            current_bonus=item["salary"]/100*20
+            
+        elif item["dept"]=="Sales" and item["years"]>1:
+            current_bonus=item["salary"]/100*15
+            
+        else:
+            current_bonus=item["salary"]/100*10
+
+           
+        if item["years"]>5:
+            current_bonus+=500
+
+        item["bonuses"] = current_bonus
+        item["salary"] +=current_bonus
+
+        
+        if item["salary"]>max_sal:
+            max_sal=item["salary"]
+            top_person=item["name"]
+    
+        
+    return staff_list, top_person
+print('---- BONUS BONUS BONUS ----')
+print (calculate_bonuses(staff))
+
+vacancy = "We need a Python developer with SQL and Git skills."
+my_skills = ["python", "sql", "git", "docker", "java"]
+def check_skills(vacancy_text, skills_list):
+    new_list=[]
+    lower_text=vacancy_text.lower()
+    for item in skills_list:
+        if item in lower_text:
+            new_list.append(item)
+    return new_list
+print(check_skills(vacancy, my_skills))
+
