@@ -1,26 +1,14 @@
 import random
 import json
-'''
-Math is 
-1/10*1/10*1/10=1/1000=0.001 for Seven
-0.001*100=0.1 Return to Player 0.1*100=10%
-
-3/10*2/10*1/10=6/1000=0.006 for Cherry
-0.006*10=0.6 Return to Player 0.6*10=6%
-
-6/10*7/10*8/10=336/1000=0.336 for Lemon
-0.336*100=33.6 Return to Player 33.6*3=100.8%
-
-res=10+6+100.8=116.8%
-
-
-'''
 
 reel1 = ["Seven"] * 1 + ["Cherry"] * 3 + ["Lemon"] * 6
 reel2 = ["Seven"] * 1 + ["Cherry"] * 2 + ["Lemon"] * 7
 reel3 = ["Seven"] * 1 + ["Cherry"] * 1 + ["Lemon"] * 8
 
-def simulate_slots(spins):
+with open('config.json', 'r') as setting:
+    data = json.load(setting)
+
+def simulate_slots(spins,data):
     res_sum = 0
     
     for _ in range(spins):
@@ -28,15 +16,15 @@ def simulate_slots(spins):
         result2=random.choice(reel2)
         result3=random.choice(reel3)
         if result1==result2==result3=="Seven":
-            res_sum+=100
+            res_sum+=data["seven_win"]
         elif result1==result2==result3=="Cherry":
-            res_sum+=10
+            res_sum+=data["cherry_win"]
         elif result1==result2==result3=="Lemon":
-            res_sum+=3
+            res_sum+=data["lemon_win"]
         else:
             res_sum+=0
     return res_sum/ spins
-temp=simulate_slots(100000)
+temp=simulate_slots(100000, data)
 results={
     "RTP": temp,
     "spins": 100000,
